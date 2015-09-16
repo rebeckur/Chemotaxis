@@ -9,7 +9,7 @@ void setup()
 {     
  	//initialize bacteria variables here
   	size(500, 500);
- 	frameRate(5);
+ 	//frameRate(5);
  	colony = new Bacteria[10];
  	for (int j = 0; j < colony.length; j++){
  		colony[j] = new Bacteria(150,100);
@@ -36,10 +36,12 @@ class Bacteria
 
  	void move()
  	{
- 		if (mouseX < bacX) {
- 			bacX += (int)(Math.random()*2)-3;
- 		} else if (mouseX > bacX){
- 			bacX += (int)(Math.random()*2)+1;
+ 		if (pmouseX < bacX) {
+ 			bacX += (int)(Math.random()*2)-1;
+ 			bacY += (int)(Math.random()*3)-1;
+ 		} else if (pmouseX > bacX){
+ 			bacX += (int)(Math.random()*1)+1;
+ 			bacY += (int)(Math.random()*3)-1;
  		}
  	}  
 
