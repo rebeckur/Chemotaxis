@@ -17,25 +17,24 @@ public class Chemotaxis extends PApplet {
  //declare bacteria variables here
 int bacX;
 int bacY;
-int bacColorG;
-int bacColorB;
+int bacColor;
 
 Bacteria [] colony;
 
 public void setup()   
 {     
  	//initialize bacteria variables here
-  	size(500, 500);
- 	//frameRate(5);
- 	colony = new Bacteria[50];
+  	size(400, 400);
+ 	frameRate(5);
+ 	colony = new Bacteria[40];
  	for (int j = 0; j < colony.length; j++){
- 		colony[j] = new Bacteria(250,250);
+ 		colony[j] = new Bacteria(150,150);
  	}
 }   
 public void draw()   
 {    
  	//move and show the bacteria
- 	background(50, 150, 50);
+ 	background(0);
  	for (int i = 0; i < colony.length; i++)
  	{
 	 	colony[i].move();
@@ -48,39 +47,46 @@ class Bacteria
  	{
  		bacX = x;
  		bacY = y;
- 		bacColorG = (int)(Math.random()*150)+50;
- 		bacColorB = (int)(Math.random()*100);
+ 		bacColor = color(255, 255, (int)(Math.random()*150)+50);
  	}
 
  	public void move()
  	{
- 		bacX += (int)(Math.random()*3)-1;
- 		bacY += (int)(Math.random()*3)-1;
- 		if (mouseX > bacX)
+ 		//bacX += (int)(Math.random()*5)-2;
+ 		//bacY += (int)(Math.random()*5)-2;
+ 		if (bacX <= mouseX)
  		{
- 			bacX += (int)(Math.random()*5)-2;
+ 			bacX += (int)(Math.random()*7)+5;
  		}
- 		if (mouseX < bacX)
+ 		if (bacX >= mouseX)
  		{
- 			bacX += (int)(Math.random()*3)-2;
+ 			bacX += (int)(Math.random()*7)-5;
  		}
- 		if (mouseY > bacY)
+ 		if (bacY <= mouseY)
  		{
- 			bacY += (int)(Math.random()*5)-2;
+ 			bacY += (int)(Math.random()*7)+5;
  		}
- 		if (mouseY < bacY)
+ 		if (bacY >= mouseY)
  		{
- 			bacY += (int)(Math.random()*3)-2;
+ 			bacY += (int)(Math.random()*7)-5;
  		}
  	}  
 
  	public void show()
  	{
+ 		int size = (int)(Math.random()*5)+1;
  		noStroke();
- 		fill(50, bacColorG, bacColorB);
- 		ellipse(bacX, bacY, 8, 8);
+ 		fill(bacColor);
+ 		ellipse(bacX, bacY, size, size);
  	}
+
 }    
+
+public void mousePressed()
+{
+	bacX = (int)(Math.random()*200);
+ 	bacY = (int)(Math.random()*200);
+}
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "Chemotaxis" };
     if (passedArgs != null) {
