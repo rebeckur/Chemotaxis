@@ -9,10 +9,11 @@ void setup()
 {     
  	//initialize bacteria variables here
   	size(400, 400);
- 	frameRate(5);
- 	colony = new Bacteria[40];
- 	for (int j = 0; j < colony.length; j++){
- 		colony[j] = new Bacteria(150,150);
+ 	frameRate(10);
+ 	colony = new Bacteria[20];
+ 	for (int j = 0; j < colony.length; j++)
+ 	{
+ 		colony[j] = new Bacteria(100,150);
  	}
 }   
 void draw()   
@@ -26,39 +27,38 @@ void draw()
  	}
 }  
 class Bacteria    
-{     
+{
+	int opa = (int)(Math.random()*200)+20;
  	Bacteria(int x, int y)
  	{
  		bacX = x;
  		bacY = y;
- 		bacColor = color(255, 255, (int)(Math.random()*150)+50);
+ 		bacColor = color(255, 255, (int)(Math.random()*150)+50, opa);
  	}
 
  	void move()
  	{
- 		//bacX += (int)(Math.random()*5)-2;
- 		//bacY += (int)(Math.random()*5)-2;
  		if (bacX <= mouseX)
  		{
- 			bacX += (int)(Math.random()*7)+5;
+ 			bacX += (int)(Math.random()*10)+8;
  		}
  		if (bacX >= mouseX)
  		{
- 			bacX += (int)(Math.random()*7)-5;
+ 			bacX += (int)(Math.random()*10)-8;
  		}
  		if (bacY <= mouseY)
  		{
- 			bacY += (int)(Math.random()*7)+5;
+ 			bacY += (int)(Math.random()*10)+8;
  		}
  		if (bacY >= mouseY)
  		{
- 			bacY += (int)(Math.random()*7)-5;
+ 			bacY += (int)(Math.random()*10)-8;
  		}
- 	}  
+ 	}
 
  	void show()
  	{
- 		int size = (int)(Math.random()*5)+1;
+ 		int size = (int)(Math.random()*6)+1;
  		noStroke();
  		fill(bacColor);
  		ellipse(bacX, bacY, size, size);
@@ -68,6 +68,6 @@ class Bacteria
 
 void mousePressed()
 {
-	bacX = (int)(Math.random()*200);
- 	bacY = (int)(Math.random()*200);
+	bacX += (int)(Math.random()*800)-400;
+ 	bacY += (int)(Math.random()*800)-400;
 }
