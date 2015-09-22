@@ -21,12 +21,17 @@ int bacColor;
 
 Bacteria [] colony;
 
+PImage img;
+
 public void setup()   
 {     
  	//initialize bacteria variables here
   	size(400, 400);
- 	frameRate(10);
- 	colony = new Bacteria[20];
+ 	frameRate(7);
+
+ 	img = loadImage("nightsky.png");
+
+ 	colony = new Bacteria[150];
  	for (int j = 0; j < colony.length; j++)
  	{
  		colony[j] = new Bacteria(100,150);
@@ -36,6 +41,7 @@ public void draw()
 {    
  	//move and show the bacteria
  	background(0);
+ 	image(img, 0, 0);
  	for (int i = 0; i < colony.length; i++)
  	{
 	 	colony[i].move();
@@ -44,7 +50,7 @@ public void draw()
 }  
 class Bacteria    
 {
-	int opa = (int)(Math.random()*200)+20;
+	int opa = (int)(Math.random()*50)+70;
  	Bacteria(int x, int y)
  	{
  		bacX = x;
@@ -54,21 +60,25 @@ class Bacteria
 
  	public void move()
  	{
- 		if (bacX <= mouseX)
+ 		if (bacX <= pmouseX)
  		{
- 			bacX += (int)(Math.random()*10)+8;
+ 			bacX += (int)(Math.random()*15)+13;
  		}
- 		if (bacX >= mouseX)
+ 		if (bacX >= pmouseX)
  		{
- 			bacX += (int)(Math.random()*10)-8;
+ 			bacX += (int)(Math.random()*15)-13;
  		}
- 		if (bacY <= mouseY)
+ 		if (bacY <= pmouseY)
  		{
- 			bacY += (int)(Math.random()*10)+8;
+ 			bacY += (int)(Math.random()*15)+13;
  		}
- 		if (bacY >= mouseY)
+ 		if (bacY >= pmouseY)
  		{
- 			bacY += (int)(Math.random()*10)-8;
+ 			bacY += (int)(Math.random()*15)-13;
+ 		}
+ 		if (mousePressed){
+ 			bacX = (int)(Math.random()*400);
+ 			bacY = (int)(Math.random()*400);
  		}
  	}
 
@@ -81,12 +91,6 @@ class Bacteria
  	}
 
 }    
-
-public void mousePressed()
-{
-	bacX += (int)(Math.random()*800)-400;
- 	bacY += (int)(Math.random()*800)-400;
-}
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "Chemotaxis" };
     if (passedArgs != null) {
