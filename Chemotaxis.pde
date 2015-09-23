@@ -5,7 +5,10 @@ int bacColor;
 
 Bacteria [] colony;
 
-PImage img;
+PImage forest;
+PImage ocean;
+
+boolean backChange = true;
 
 void setup()   
 {     
@@ -13,7 +16,8 @@ void setup()
   	size(500, 400);
  	frameRate(7);
 
- 	img = loadImage("nightsky.png");
+ 	forest = loadImage("nightsky.png");
+ 	ocean = loadImage("oceannight.jpg");
 
  	colony = new Bacteria[150];
  	for (int j = 0; j < colony.length; j++)
@@ -24,8 +28,25 @@ void setup()
 void draw()   
 {    
  	//move and show the bacteria
+ 	if (keyPressed && backChange == true)
+ 	{
+ 		backChange = false;
+ 	}
+ 	else
+ 	{
+ 		backChange = true;
+ 	}
+
  	background(0);
- 	image(img, 0, 0);
+ 	if (backChange == true)
+ 	{
+ 		image(forest, 0, 0);
+ 	}
+ 	else
+ 	{
+ 		image(ocean, 0, 0);
+ 	}
+ 	
  	for (int i = 0; i < colony.length; i++)
  	{
 	 	colony[i].move();
@@ -63,6 +84,7 @@ class Bacteria
  		if (mousePressed){
  			bacX = (int)(Math.random()*500);
  			bacY = (int)(Math.random()*400);
+ 			bacColor = color(255, 255, (int)(Math.random()*150)+50, opa);
  		}
  	}
 
