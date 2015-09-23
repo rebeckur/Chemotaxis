@@ -10,7 +10,7 @@ PImage img;
 void setup()   
 {     
  	//initialize bacteria variables here
-  	size(400, 400);
+  	size(500, 400);
  	frameRate(7);
 
  	img = loadImage("nightsky.png");
@@ -46,22 +46,22 @@ class Bacteria
  	{
  		if (bacX <= pmouseX)
  		{
- 			bacX += (int)(Math.random()*15)+13;
+ 			bacX += (int)(Math.random()*20)+18;
  		}
  		if (bacX >= pmouseX)
  		{
- 			bacX += (int)(Math.random()*15)-13;
+ 			bacX += (int)(Math.random()*20)-18;
  		}
  		if (bacY <= pmouseY)
  		{
- 			bacY += (int)(Math.random()*15)+13;
+ 			bacY += (int)(Math.random()*20)+18;
  		}
  		if (bacY >= pmouseY)
  		{
- 			bacY += (int)(Math.random()*15)-13;
+ 			bacY += (int)(Math.random()*20)-18;
  		}
  		if (mousePressed){
- 			bacX = (int)(Math.random()*400);
+ 			bacX = (int)(Math.random()*500);
  			bacY = (int)(Math.random()*400);
  		}
  	}
