@@ -13,8 +13,8 @@ boolean backChange = true;
 void setup()   
 {     
  	//initialize bacteria variables here
-  	size(500, 400);
- 	frameRate(7);
+  	size(500, 320);
+ 	frameRate(6);
 
  	forest = loadImage("nightsky.png");
  	ocean = loadImage("oceannight.jpg");
@@ -24,38 +24,40 @@ void setup()
  	{
  		colony[j] = new Bacteria(100,150);
  	}
-}   
+}
+   
 void draw()   
 {    
- 	//move and show the bacteria
- 	if (keyPressed && backChange == true)
- 	{
- 		backChange = false;
- 	}
- 	else
- 	{
- 		backChange = true;
- 	}
-
  	background(0);
- 	if (backChange == true)
+ 	//for changing background
+	if (backChange == true)
  	{
- 		image(forest, 0, 0);
- 	}
- 	else
- 	{
- 		image(ocean, 0, 0);
- 	}
+	 	image(forest, 0, 0);
+	 	if (keyPressed)
+	 	{
+	 		backChange = false;
+	 	}
+	}
+	else
+	{
+	 	image(ocean, 0, 0);
+	 	if (keyPressed)
+	 	{
+	 		backChange = true;
+	 	}
+	}
  	
  	for (int i = 0; i < colony.length; i++)
  	{
 	 	colony[i].move();
 	 	colony[i].show();
  	}
-}  
+} 
+
 class Bacteria    
 {
 	int opa = (int)(Math.random()*50)+70;
+
  	Bacteria(int x, int y)
  	{
  		bacX = x;
@@ -65,6 +67,7 @@ class Bacteria
 
  	void move()
  	{
+ 		//biased walk towards the mouse
  		if (bacX <= pmouseX)
  		{
  			bacX += (int)(Math.random()*20)+18;
@@ -81,9 +84,11 @@ class Bacteria
  		{
  			bacY += (int)(Math.random()*20)-18;
  		}
- 		if (mousePressed){
+ 		//scattering
+ 		if (mousePressed)
+ 		{
  			bacX = (int)(Math.random()*500);
- 			bacY = (int)(Math.random()*400);
+ 			bacY = (int)(Math.random()*321);
  			bacColor = color(255, 255, (int)(Math.random()*150)+50, opa);
  		}
  	}
@@ -95,5 +100,4 @@ class Bacteria
  		fill(bacColor);
  		ellipse(bacX, bacY, size, size);
  	}
-
 }    
